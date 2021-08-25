@@ -15,6 +15,7 @@ class EmailsController < ApplicationController
       flash[:notice] = "Please try again"
     end
   end
+
   def show
     @email = Email.find(params[:id])
     if @email.read == false
@@ -25,6 +26,7 @@ class EmailsController < ApplicationController
       format.js { }
     end 
   end
+
   def destroy
     respond_to do |format|
       format.html { redirect_to emails_path }

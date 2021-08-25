@@ -1,5 +1,4 @@
 <% if @email.read == true %>
-<th scope="row"><%=@email.id%></th>
       <td class="email-object-<%=email.id%>"><%=link_to email_path(email.id), remote: true do %>
             <%=email.object%></td>
           <%end%>
@@ -10,7 +9,6 @@
           <%=link_to "Marquer comme non lu", email_path(@email.id), :method => :put, remote: true%>
         </td>
 <% else %>
-<th scope="row"><%=@email.id%></th>
       <td class="email-object-<%=email.id%>"><%=link_to email_path(email.id), remote: true do %>
             <strong><%=email.object%></strong></td>
           <%end%>

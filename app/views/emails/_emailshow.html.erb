@@ -1,8 +1,8 @@
-
-      <th scope="row"><%=@email.id%></th>
-      <td class="email-object-<%=email.id%>"><%=link_to email_path(email.id), remote: true do %>
-        <%=email.object%></td>
-      <%end%>
+<td class="email-object-<%=email.id%> p-0"><%=link_to email_path(email.id), remote: true do %>
+  <div class="container"><%=email.object%></div>
+  
+<%end%>
+</td>
       <td class="email-body-<%=@email.id%>">
         <h2><%= @email.object %></h2> <br/>
         <p><%= @email.body %></p>

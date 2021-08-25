@@ -21,7 +21,7 @@
     <tr id="email-list-<%=email.id%>">
       <th scope="row"><%=email.id%></th>
       <% if email.read == false %>
-      <td class="email-object-<%=email.id%> link"><%=link_to email_path(email.id), remote: true do %>
+      <td class="email-object-<%=email.id%>"><%=link_to email_path(email.id), remote: true do %>
         <strong><%=email.object%></strong></td>
       <%end%>
       <%else%>

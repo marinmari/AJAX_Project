@@ -1,0 +1,1 @@
+$("#task-list-<%=@task.category.title%>").append("<%= j render 'task', task: @task %>").children(':last').hide().fadeIn(2000);

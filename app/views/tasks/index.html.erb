@@ -1,0 +1,78 @@
+<h1 class="text-center mb-4">Welcome to my todolist app</h1>
+<div class="container">
+
+  <div class="row ml-3">
+      <div class="offset-md-3 col-md-6 offset-md-3">
+          <%= form_tag(tasks_path, method: "post", class: "form", id: "contact-form", remote: true)  do %>
+              <div class="form-group">
+                  <%= label_tag "Task", nil, class: "form-label" %>
+                  <%= text_field_tag :title, nil, class: "form-control", placeholder: "à faire" %>
+              </div>
+              <div class="form-group">
+                  <%= label_tag "Deadline", nil, class: "form-label" %>
+                  <%= date_field_tag :deadline, nil, class: "form-control" %>
+
+              </div>
+              <div class="form-group">
+                  <%= label_tag "Category", nil, class: "form-label" %>
+                  <%= select_tag "Category", options_from_collection_for_select(@categories, "id", "title", "1"), class: "form-control"  %>
+              </div>
+
+              <div class="text-center">
+                  <%= submit_tag("Create task", class: "btn btn-start-order") %>
+              </div>
+          <%end%>
+      </div>
+  </div>
+<div class="container">
+  <ul class="category-list">
+  <% @categories.each do  |category|%>
+
+  <li class="<%= category.title  %>"><%= category.title  %></li>
+  <div class="card">
+    <ul id="task-list-<%=category.title%>">
+      <% category.tasks.each do |task|  %>
+        <%if task.status == true %>
+      <li id=<%=task.id%>>
+      <div class="row">
+        <div class="col-6">
+          <p id="item-<%=task.id%>" class="strike">
+            <%= task.title  %>
+            <% unless task.deadline.nil? %>
+              , to read: <%= task.deadline.strftime('%D') %> 
+          </p>
+          </div>
+          <div class="col-6">
+              <%=link_to task_path(task.id), :method => :delete, remote: true do %><i class="far fa-trash-alt"></i><% end %>
+                <%= check_box_tag :name, 1, task.status , data: { remote: true, url: task_path(task.id), params: { id: task.id, status: task.status}.to_param, method: "put" }%>
+          
+              <% end %>
+              </li>
+              <%else%>
+            
+      <li id=<%=task.id%>>
+      <div class="row">
+      <div class="col-6">
+      <p id="item-<%=task.id%>">
+        <%= task.title  %>
+        <% unless task.deadline.nil? %>
+          , to read: <%= task.deadline.strftime('%D') %> 
+      </p>
+      </div>
+          <div class="col-6">
+          <%= link_to task_path(task.id), :method => :delete, remote: true do %><i class="far fa-trash-alt"></i><% end %>
+            <%= check_box_tag :name, 1, task.status , data: { remote: true, url: task_path(task.id), params: { id: task.id, status: task.status}.to_param, method: "put" }%>
+          
+            <% end %>
+      </li>
+        <% end %>
+      </li>
+      
+      
+      <%end%>
+    </ul>
+    
+  </div>
+  <% end %>
+  </ul>
+</div>

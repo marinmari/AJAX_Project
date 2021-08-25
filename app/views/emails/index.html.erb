@@ -1,0 +1,36 @@
+<div class="row ml-3">
+      <div class="offset-md-3 col-md-6 offset-md-3">
+          <%= form_tag(emails_path, method: "post", class: "form", id: "contact-form", remote:true )  do %>
+              <div class="text-center">
+                  <%= submit_tag("Recevoir un email", class: "btn btn-start-order") %>
+              </div>
+          <%end%>
+      </div>
+  </div>
+
+<table class="table table-bordered table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Liste des emails</th>
+      <th scope="col">Emails sélectionnés</th>
+    </tr>
+  </thead>
+  <tbody id="list-email">
+  <% @emails.each do |email| %>
+    <tr id="email-list-<%=email.id%>">
+      <th scope="row"><%=email.id%></th>
+      <% if email.read == false %>
+      <td class="email-object-<%=email.id%> link"><%=link_to email_path(email.id), remote: true do %>
+        <strong><%=email.object%></strong></td>
+      <%end%>
+      <%else%>
+      <td class="email-object-<%=email.id%>"><%=link_to email_path(email.id), remote: true do %>
+        <%=email.object%></td>
+      <%end%>
+      <%end%>
+      <td class="email-body-<%=email.id%>"></td>
+    </tr>
+  <%end%>
+  </tbody>
+</table>

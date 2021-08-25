@@ -1,0 +1,12 @@
+
+      <th scope="row"><%=@email.id%></th>
+      <td class="email-object-<%=email.id%>"><%=link_to email_path(email.id), remote: true do %>
+        <%=email.object%></td>
+      <%end%>
+      <td class="email-body-<%=@email.id%>">
+        <h2><%= @email.object %></h2> <br/>
+        <p><%= @email.body %></p>
+        <%=link_to email_path(@email.id), :method => :delete, remote: true do %><i class="far fa-trash-alt"></i><% end %>
+        <%=link_to "Marquer comme non lu", email_path(@email.id), :method => :put, remote: true%>
+      </td>
+

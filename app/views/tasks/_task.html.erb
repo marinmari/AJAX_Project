@@ -1,0 +1,20 @@
+
+    <li id=<%=task.id%>>
+      <div class="row">
+        <div class="col-6">
+          <p id="item-<%=task.id%>" >
+            <%= task.title  %>
+            <% unless task.deadline.nil? %>
+              , to read: <%= task.deadline.strftime('%D') %> 
+          </p>
+        </div>
+        <div class="col-6">
+        <%= link_to task_path(task.id), :method => :delete, remote: true do %>
+          <i class="far fa-trash-alt"></i>
+          <% end %>
+          <%= check_box_tag :name, 1, task.status , data: { remote: true, url: task_path(task.id), params: { id: task.id, status: task.status}.to_param, method: "put" }%>
+        
+          <% end %>
+        </div>
+        </div>
+    </li>

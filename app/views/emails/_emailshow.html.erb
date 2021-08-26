@@ -1,12 +1,15 @@
-<td class="email-object-<%=email.id%> p-0"><%=link_to email_path(email.id), remote: true do %>
-  <div class="container"><%=email.object%></div>
-  
-<%end%>
+
+<td class="email-object-<%=email.id%>" id="email-object-<%=email.id%>">
+  <%=link_to email_path(email.id), remote: true do %>
+    <div class="container h-100 w-100">
+      <%=email.object%>
+    </div>
+  <%end%>
 </td>
-      <td class="email-body-<%=@email.id%>">
-        <h2><%= @email.object %></h2> <br/>
-        <p><%= @email.body %></p>
-        <%=link_to email_path(@email.id), :method => :delete, remote: true do %><i class="far fa-trash-alt"></i><% end %>
-        <%=link_to "Marquer comme non lu", email_path(@email.id), :method => :put, remote: true%>
-      </td>
+<td class="email-body-<%=@email.id%>" id="email-body-<%=@email.id%>">
+  <h2><%= @email.object %></h2> <br/>
+  <p><%= @email.body %></p>
+  <%=link_to email_path(@email.id), :method => :delete, remote: true do %><i class="far fa-trash-alt"></i><% end %>
+  <%=link_to "Marquer comme non lu", email_path(@email.id), :method => :put, remote: true%>
+</td>
 

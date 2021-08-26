@@ -1,21 +1,29 @@
 <% if @email.read == true %>
-      <td class="email-object-<%=email.id%>"><%=link_to email_path(email.id), remote: true do %>
-            <%=email.object%></td>
-          <%end%>
-          <td class="email-body-<%=@email.id%>">
-          <h2><%= @email.object %></h2> <br/>
-          <p><%= @email.body %></p>
-          <%=link_to email_path(@email.id), :method => :delete, remote: true do %><i class="far fa-trash-alt"></i><% end %>
-          <%=link_to "Marquer comme non lu", email_path(@email.id), :method => :put, remote: true%>
-        </td>
+  <td class="email-object-<%=email.id%>" id="email-body-<%=@email.id%>">
+    <%=link_to email_path(email.id), remote: true do %>
+      <div class="container h-100 w-100"> 
+        <%=email.object%>
+      </div>
+    <%end%>
+  </td>
+  <td class="email-body-<%=@email.id%>">
+    <h2><%= @email.object %></h2> <br/>
+    <p><%= @email.body %></p>
+    <%=link_to email_path(@email.id), :method => :delete, remote: true do %><i class="far fa-trash-alt"></i><% end %>
+    <%=link_to "Marquer comme non lu", email_path(@email.id), :method => :put, remote: true%>
+  </td>
 <% else %>
-      <td class="email-object-<%=email.id%>"><%=link_to email_path(email.id), remote: true do %>
-            <strong><%=email.object%></strong></td>
-          <%end%>
-          <td class="email-body-<%=@email.id%>">
-          <h2><%= @email.object %></h2> <br/>
-          <p><%= @email.body %></p>
-          <%=link_to email_path(@email.id), :method => :delete, remote: true do %><i class="far fa-trash-alt"></i><% end %>
-          <%=link_to "Marquer comme lu", email_path(@email.id), :method => :put, remote: true%>
-        </td>
-      <%end%>
+  <td class="email-object-<%=email.id%>" id="email-body-<%=@email.id%>">
+    <%=link_to email_path(email.id), remote: true do %>
+      <div class="container">
+        <strong><%=email.object%></strong>
+      </div>
+    <%end%>
+  </td>
+  <td class="email-body-<%=@email.id%>">
+    <h2><%= @email.object %></h2> <br/>
+    <p><%= @email.body %></p>
+    <%=link_to email_path(@email.id), :method => :delete, remote: true do %><i class="far fa-trash-alt"></i><% end %>
+    <%=link_to "Marquer comme lu", email_path(@email.id), :method => :put, remote: true%>
+  </td>
+<%end%>

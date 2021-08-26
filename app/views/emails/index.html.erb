@@ -16,24 +16,28 @@
       </tr>
     </thead>
     <tbody id="list-email">
-    <% @emails.each do |email| %>
-      <tr id="email-list-<%=email.id%>">
-        <% if email.read == false %>
-        <td class="email-object-<%=email.id%> p-0"><%=link_to email_path(email.id), remote: true do %>
-          <div class="container h-100 w-100"><strong><%=email.object%></strong></div>
-        </td> 
-        <%end%>
-        
-        <%else%>
-        <td class="email-object-<%=email.id%> p-0"><%=link_to email_path(email.id), remote: true do %>
-          <div class="container h-100 w-100"><%=email.object%></div>
-          
-        <%end%>
-        </td>
-        <%end%>
-        <td class="email-body-<%=email.id%>"></td>
-      </tr>
-    <%end%>
+      <% @emails.each do |email| %>
+        <tr id="email-list-<%=email.id%>">
+          <% if email.read == false %>
+            <td class="email-object-<%=email.id%> " id="email-object-<%=email.id%>">
+              <%=link_to email_path(email.id), remote: true do %>
+                <div class="container h-100 w-100">
+                <strong><%=email.object%></strong>
+                </div>
+              <%end%>
+            </td> 
+          <%else%>
+            <td class="email-object-<%=email.id%> " id="email-object-<%=email.id%>">
+              <%=link_to email_path(email.id), remote: true do %>
+                <div class="container h-100 w-100">
+                  <%=email.object%>
+                </div>
+              <%end%>
+            </td>
+          <%end%>
+          <td class="email-body-<%=email.id%>" id="email-body-<%=email.id%>"></td>
+        </tr>
+      <%end%>
     </tbody>
   </table>
 </div>

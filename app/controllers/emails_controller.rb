@@ -3,7 +3,7 @@ class EmailsController < ApplicationController
     @emails = Email.all
   end
   def create
-    @email = Email.new(object: Faker::Book.title, body: Faker::Quote.matz)
+    @email = Email.new(object: Faker::Book.title, body: Faker::Quote.matz, read: false)
     
     if @email.save
       respond_to do |format|
@@ -18,9 +18,7 @@ class EmailsController < ApplicationController
 
   def show
     @email = Email.find(params[:id])
-    if @email.read == false
-      @email.update(read: true)
-    end
+    @email.update(read: true)
     respond_to do |format|
       format.html { redirect_to emails_path }
       format.js { }
@@ -35,16 +33,18 @@ class EmailsController < ApplicationController
     @email = Email.find(params[:id])
     @email.destroy
   end
+
   def update
     @email = Email.find(params[:id])
+    
+    respond_to do |format|
+      format.html { redirect_to emails_path }
+      format.js { }
+    end
     if @email.read == true
       @email.update(read: false)
     else 
       @email.update(read: true)
     end 
-    respond_to do |format|
-      format.html { redirect_to emails_path }
-      format.js { }
-    end
   end
 end

@@ -1,8 +1,19 @@
-<td class="email-object-<%=email.id%>" id="email-object-<%=email.id%>">
+<% if @email.read == true %>
+<td class="email-object-<%=email.id%>" id="email-object-<%=email.id%>"> 
   <%=link_to email_path(email.id), remote: true do %>
     <div class="container h-100 w-100">
-      <%=email.object%>
+      <%=email.object%> <i class="far fa-envelope-open"></i>
     </div>
   <%end%>
 </td>
 <td class="email-body-<%=@email.id%>" id="email-body-<%=@email.id%>"></td>
+<% else %>
+<td class="email-object-<%=email.id%>" id="email-object-<%=email.id%>"> 
+  <%=link_to email_path(email.id), remote: true do %>
+    <div class="container h-100 w-100">
+      <strong><%=email.object%> <i class="far fa-envelope"></i></strong>
+    </div>
+  <%end%>
+</td>
+<td class="email-body-<%=@email.id%>" id="email-body-<%=@email.id%>"></td>
+<% end %>

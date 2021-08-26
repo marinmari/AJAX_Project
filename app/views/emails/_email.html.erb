@@ -2,7 +2,7 @@
   <td class="email-object-<%=email.id%>" id="email-object-<%=email.id%>">
     <%=link_to email_path(email.id), remote: true do %>
       <div class="container h-100 w-100">
-        <strong><%=email.object%></strong>
+      <strong><%=email.object%> <i class="far fa-envelope"></i></strong>
       </div>
     <%end%>
   </td> 

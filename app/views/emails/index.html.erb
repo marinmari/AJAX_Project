@@ -1,18 +1,23 @@
-<div class="row ml-3">
-      <div class="offset-md-3 col-md-6 offset-md-3">
-          <%= form_tag(emails_path, method: "post", class: "form", id: "contact-form", remote:true )  do %>
+<div class="row ">
+      <div class="col text-center">
+          <%= form_tag(emails_path, method: "post", class: "btn", id: "contact-form", remote:true )  do %>
               <div class="text-center">
-                  <%= submit_tag("Recevoir un email", class: "btn btn-start-order") %>
+                  
+                  <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                    <i class="far fa-paper-plane"></i> Recevoir un email <i class="far fa-paper-plane"></i>
+                <% end %>
               </div>
           <%end%>
       </div>
   </div>
+  <hr>
+  <hr>
 <div class="container">
   <table class="table table-bordered table-light">
     <thead class="table-dark">
       <tr>
-        <th class='col-5' scope="col">Liste des emails</th>
-        <th class='col-7' scope="col">Emails sélectionnés</th>
+        <th class='col-5 text-center' scope="col">Liste des emails</th>
+        <th class='col-7 text-center' scope="col">Emails sélectionnés</th>
       </tr>
     </thead>
     <tbody id="list-email">
@@ -22,7 +27,7 @@
             <td class="email-object-<%=email.id%> " id="email-object-<%=email.id%>">
               <%=link_to email_path(email.id), remote: true do %>
                 <div class="container h-100 w-100">
-                <strong><%=email.object%></strong>
+                <strong><%=email.object%> <i class="far fa-envelope"></i></strong>
                 </div>
               <%end%>
             </td> 
@@ -30,7 +35,7 @@
             <td class="email-object-<%=email.id%> " id="email-object-<%=email.id%>">
               <%=link_to email_path(email.id), remote: true do %>
                 <div class="container h-100 w-100">
-                  <%=email.object%>
+                  <%=email.object%> <i class="far fa-envelope-open"></i>
                 </div>
               <%end%>
             </td>
@@ -41,3 +46,5 @@
     </tbody>
   </table>
 </div>
+<hr>
+  <hr>

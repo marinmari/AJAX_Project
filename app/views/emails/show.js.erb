@@ -1,5 +1,5 @@
-
-if (document.getElementById("email-body-<%=@email.id%>").children.length === 0){
+console.log(document.getElementById("email-body-<%=@email.id%>").children.length)
+if (document.getElementById("email-body-<%=@email.id%>").children.length === 0 || document.getElementById("email-body-<%=@email.id%>").children.length === 1){
   $("#email-list-<%=@email.id%>").html("<%= j render 'emailshow', email: @email %>").children(':last').hide().fadeIn(2000);
 }else{
   $("#email-list-<%=@email.id%>").html("<%= j render 'emailshow2', email: @email %>").children(':last').hide().fadeIn(2000);}
